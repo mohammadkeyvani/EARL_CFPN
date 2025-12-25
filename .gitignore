@@ -1,0 +1,52 @@
+# -----------------------
+# Python
+# -----------------------
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+*.pyc
+*.pyo
+
+# -----------------------
+# Environment
+# -----------------------
+.env/
+venv/
+.venv/
+*.env
+
+# -----------------------
+# OS / IDE
+# -----------------------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# -----------------------
+# Detectron2 / Pytorch outputs
+# -----------------------
+output/
+logs/
+*.pth
+*.pt
+checkpoints/
+*.ckpt
+
+# -----------------------
+# Dataset / Large files
+# -----------------------
+HRSC2016/
+*.zip
+*.tar.gz
+*.tar
+*.tgz
+
+# -----------------------
+# Jupyter / Colab
+# -----------------------
+.ipynb_checkpoints/
+*.ipynb

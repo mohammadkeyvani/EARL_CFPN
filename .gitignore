@@ -36,14 +36,7 @@ logs/
 checkpoints/
 *.ckpt
 
-# -----------------------
-# Dataset / Large files
-# -----------------------
-HRSC2016/
-*.zip
-*.tar.gz
-*.tar
-*.tgz
+
 
 # -----------------------
 # Jupyter / Colab

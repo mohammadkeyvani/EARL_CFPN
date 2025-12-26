@@ -3,13 +3,13 @@ from detectron2.data.datasets.register_coco import register_coco_instances
 
 
 # data_root = "HRSC2016/"
-data_root = "/kaggle/working/EARL_CFPN/HRSC2016/HRSC2016"
+data_root = "/kaggle/working/HRSC2016/"
 
 
 _PREDEFINED_SPLITS = {}
 _PREDEFINED_SPLITS["hrsc2016"] = {
-    "hrsc_trainval": (data_root+'AllImages', data_root+"Train/HRSC2016_trainval.json"),
-    "hrsc_test": (data_root+'AllImages', data_root+"Test/HRSC2016_test.json"),
+    "hrsc_trainval": (data_root+'FullDataSet/AllImages', data_root+"Train/HRSC2016_trainval.json"),
+    "hrsc_test": (data_root+'FullDataSet/AllImages', data_root+"Test/HRSC2016_test.json"),
 }
 
 HRSC_CATEGORIES = [

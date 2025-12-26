@@ -42,4 +42,4 @@ checkpoints/
 # Jupyter / Colab
 # -----------------------
 .ipynb_checkpoints/
-*.ipynb
+

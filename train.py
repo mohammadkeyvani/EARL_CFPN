@@ -1,5 +1,7 @@
 import os
 from random import shuffle
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
 import detectron2.utils.comm as comm
 from detectron2.checkpoint import DetectionCheckpointer
 from detectron2.checkpoint import DetectionCheckpointer

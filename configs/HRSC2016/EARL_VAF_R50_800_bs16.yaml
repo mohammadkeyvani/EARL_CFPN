@@ -1,39 +1,55 @@
 _BASE_: "./Base_RFCOS_EARL_R50.yaml"
+
 MODEL:
   WEIGHTS: "catalog://ImageNetPretrained/FAIR/R-50-GN"
+
   RESNETS:
     STRIDE_IN_1X1: False
-    # Options: FrozenBN, GN, "SyncBN", "BN"
     NORM: "GN"
 
-    # باید جذف و جایگزین بشه
   FPN:
     NORM: "GN"
+
   RFCOS:
     NUM_CLASSES: 1
     NORM: "GN"
-    TOPK_SAMPLE: 22
+
+    TOPK_SAMPLE: 16          # کاهش مصرف VRAM
     ANGLE_RANGE: "a180"
+
     NMS_THRESH_TEST: 0.5
-    BBOX_REG_LOSS_TYPE: "smooth_l1_weight"
     SCORE_THRESH_TEST: 0.01
+
+    BBOX_REG_LOSS_TYPE: "smooth_l1_weight"
+
 DATASETS:
   TRAIN: ("hrsc_trainval", )
   TEST: ("hrsc_test",)
+
 DATALOADER:
   FILTER_EMPTY_ANNOTATIONS: False
-  NUM_WORKERS: 8
+  NUM_WORKERS: 4             # Kaggle پایدارتر از 8
+
 INPUT:
-  MIN_SIZE_TRAIN: (600, 800, 1000, 1200)
+  MIN_SIZE_TRAIN: (600, 800, 1000)
   MIN_SIZE_TEST: 800
-  MAX_SIZE_TRAIN: 1400
-  MAX_SIZE_TEST: 1400
+
+  MAX_SIZE_TRAIN: 1333       # مقدار استاندارد و امن
+  MAX_SIZE_TEST: 1333
+
 SOLVER:
-  IMS_PER_BATCH: 2
-  BASE_LR: 0.0025
-  MAX_ITER: 45000
-  STEPS: (30000, 38000)
+  IMS_PER_BATCH: 2            # امن برای T4
+  BASE_LR: 0.0025             # مناسب batch=2
+
+  MAX_ITER: 36000             # HRSC زودتر converge می‌کند
+  STEPS: (24000, 30000)
+
   WARMUP_ITERS: 1000
+
+  AMP:
+    ENABLED: True             # 🔥 خیلی مهم برای T4
+
 TEST:
-  EVAL_PERIOD: 1000
-OUTPUT_DIR: "./work_dir/HRSC2016/EARL_VAF_R50_800_bs16"
+  EVAL_PERIOD: 2000           # کاهش overhead
+
+OUTPUT_DIR: "./work_dir/HRSC2016/EARL_VAF_R50_800_T4"
